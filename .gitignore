@@ -1,3 +1,9 @@
+##
+db.sqlite3
+*.swp
+
+## Preset
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
