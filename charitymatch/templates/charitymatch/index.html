@@ -1,0 +1,13 @@
+<h1>Charity organisations present in the database</h1>
+
+{% if organisations %}
+    <ul>
+    {% for organisation in organisations %}
+        <li>"ID: {{organisation.id}} Name: {{organisation.name}}"</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No organisations are available</p>
+{% endif %}
+
+

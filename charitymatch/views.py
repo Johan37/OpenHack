@@ -1,7 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
 
-# Create your views here.
+from .models import Organisation
+
 def index(request):
-    return HttpResponse("You are at the index page")
+
+    organisations = list(Organisation.objects.order_by('name'))
+    template = loader.get_template('charitymatch/index.html')
+
+    context = {
+        'organisations': organisations,
+    }
+
+    return HttpResponse(template.render(context, request))
 
