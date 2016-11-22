@@ -9,7 +9,7 @@ class Category(models.Model):
 
 class Organisation(models.Model):
     name = models.CharField(max_length=200)
-    categorys = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category)
     
     def __str__(self):
         return self.name
