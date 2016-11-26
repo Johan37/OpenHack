@@ -4,6 +4,7 @@ from django.template import loader
 
 from .models import Organisation
 
+
 def index(request):
 
     organisations = list(Organisation.objects.order_by('name'))
@@ -15,3 +16,7 @@ def index(request):
 
     return HttpResponse(template.render(context, request))
 
+
+def organization(request, organization_id):
+
+    return HttpResponse("Hej! {}".format(organization_id))
