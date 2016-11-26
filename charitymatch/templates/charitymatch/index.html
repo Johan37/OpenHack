@@ -3,7 +3,12 @@
 {% if organisations %}
     <ul>
     {% for organisation in organisations %}
-        <li>"ID: {{organisation.id}} Name: {{organisation.name}}"</li>
+        <li>
+            <p>
+                Organisation: ID {{organisation.id}} -
+                <a href="/organisation/{{organisation.id}}">{{organisation.name}}</a>
+            </p>
+        </li>
     {% endfor %}
     </ul>
 {% else %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 
@@ -17,6 +17,8 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-def organization(request, organization_id):
+def organisation(request, organisation_id):
 
-    return HttpResponse("Hej! {}".format(organization_id))
+    organisation = get_object_or_404(Organisation, pk=organisation_id)
+
+    return HttpResponse("Hej! {}".format(organisation.name))
