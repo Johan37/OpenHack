@@ -8,7 +8,7 @@ from .models import Organisation
 def index(request):
 
     organisations = list(Organisation.objects.order_by('name'))
-    template = loader.get_template('charitymatch/index.html')
+    template = loader.get_template('index.html')
 
     context = {
         'organisations': organisations,

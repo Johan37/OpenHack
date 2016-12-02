@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 <h1>Charity organisations present in the database</h1>
 
 {% if organisations %}
@@ -14,5 +17,4 @@
 {% else %}
     <p>No organisations are available</p>
 {% endif %}
-
-
+{% endblock %}
