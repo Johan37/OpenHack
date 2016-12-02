@@ -8,6 +8,7 @@ from .models import Organisation
 def index(request):
 
     organisations = list(Organisation.objects.order_by('name'))
+
     template = loader.get_template('index.html')
 
     context = {
@@ -19,11 +20,11 @@ def index(request):
 
 def organisation(request, organisation_id):
 
-    organisation = get_object_or_404(Organisation, pk=organisation_id)
+    organisation_local = get_object_or_404(Organisation, pk=organisation_id)
     template = loader.get_template('org.html')
 
     context = {
-        'org': organisation,
+        'org': organisation_local,
     }  
 
     return HttpResponse(template.render(context, request))
