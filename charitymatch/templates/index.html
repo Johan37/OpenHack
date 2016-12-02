@@ -38,6 +38,24 @@
     </div>
 </div>
 
+{% if organisations %}
+    <ul>
+    {% for organisation in organisations %}
+        <li>
+                Organisation: ID {{organisation.id}} -
+                <a href="/organisation/{{organisation.id}}">{{organisation.name}}</a>
+
+                <!--<img src="/{{organisaton.image.url}}">-->
+                <img src="/static/charitymatch/organisations/image/{{organisation.get_name}}">
+            </p>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No organisations are available</p>
+{% endif %}
+
+
 {% endblock %}
 
 {% block js %}
