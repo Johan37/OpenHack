@@ -11,7 +11,7 @@ def index(request):
     template = loader.get_template('index.html')
 
     context = {
-        'organisations': organisations,
+        'orgs': organisations,
     }
 
     return HttpResponse(template.render(context, request))
@@ -20,5 +20,10 @@ def index(request):
 def organisation(request, organisation_id):
 
     organisation = get_object_or_404(Organisation, pk=organisation_id)
+    template = loader.get_template('org.html')
 
-    return HttpResponse("Hej! {}".format(organisation.name))
+    context = {
+        'org': organisation,
+    }  
+
+    return HttpResponse(template.render(context, request))

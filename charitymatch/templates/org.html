@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Charity organisations present in the database</h1>
+
+
+    <ul>
+        <li>
+            <p>
+                Organisation: ID {{org.id}} -
+                <a href="/organisation/{{organisation.id}}">{{org.name}}</a>
+            </p>
+        </li>
+    </ul>
+{% endblock %}
