@@ -75,23 +75,23 @@ WSGI_APPLICATION = 'openhack16.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-#}
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'charitymatch',
-        'USER': '<INSERT USER>',
-        'PASSWORD': '<INSERT PASS>',
-        'HOST': '<INSERT HOST>',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'charitymatch',
+#        'USER': '<INSERT USER>',
+#        'PASSWORD': '<INSERT PASS>',
+#        'HOST': '<INSERT HOST>',
+#        'PORT': '',
+#    }
+#}
 
 
 # Password validation
