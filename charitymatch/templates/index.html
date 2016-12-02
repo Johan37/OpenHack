@@ -38,9 +38,9 @@
     </div>
 </div>
 
-{% if organisations %}
+{% if orgs %}
     <ul>
-    {% for organisation in organisations %}
+    {% for organisation in orgs %}
         <li>
                 Organisation: ID {{organisation.id}} -
                 <a href="/organisation/{{organisation.id}}">{{organisation.name}}</a>
