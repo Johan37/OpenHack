@@ -3,9 +3,9 @@
 {% block content %}
 <h1>Charity organisations present in the database</h1>
 
-{% if organisations %}
+{% if orgs %}
     <ul>
-    {% for organisation in organisations %}
+    {% for organisation in orgs %}
         <li>
             <p>
                 Organisation: ID {{organisation.id}} -
