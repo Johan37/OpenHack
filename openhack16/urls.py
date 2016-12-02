@@ -16,8 +16,17 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from django.conf import settings
+from django.conf.urls.static import static
+
+# urlpatterns = patterns('',
+#                        # ... the rest of your URLconf goes here ...
+#                        )
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('charitymatch.urls')),
+    url(r'^charitymatch/', include('charitymatch.urls')),
 ]
 
+
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -10,6 +10,7 @@
             <p>
                 Organisation: ID {{organisation.id}} -
                 <a href="/organisation/{{organisation.id}}">{{organisation.name}}</a>
+                <img src="/{{organisation.image.url}}">
             </p>
         </li>
     {% endfor %}
@@ -17,4 +18,12 @@
 {% else %}
     <p>No organisations are available</p>
 {% endif %}
+
+<img src="/static/charitymatch/images/actionaid.jpg">
+
+<div>
+    <p>HEJ :)</p>
+</div>
+
+
 {% endblock %}
