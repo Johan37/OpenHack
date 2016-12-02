@@ -9,6 +9,8 @@ class Category(models.Model):
 
 class Organisation(models.Model):
     name = models.CharField(max_length=200)
+    link = models.CharField(max_length=200)
+    description = models.CharField(max_length=1000)
     categories = models.ManyToManyField(Category)
     
     def __str__(self):
