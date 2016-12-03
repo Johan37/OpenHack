@@ -8,6 +8,10 @@
         .relative {
             position:relative;
         }
+        .current {
+            position: absolute;
+            top: 0;
+        }
     </style>
 {% endblock %}
 
@@ -15,16 +19,16 @@
 
 <div class="row">
     <div class="col-md-8 col-s-12">
-        <div class="well relative" id="current-question-well">
-            <button type="button" class="btn btn-xs btn-default back-button"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
-            <h3>Is this a question?</h3>
-            <p>
-            <form id="current-form">
-                <button type="button" class="btn btn-lg btn-default answer" data-answer="Yes">Yes</button>
-                <button type="button" class="btn btn-lg btn-default answer" data-answer="No">No</button>
-            </form>
-            </p>
+        <div id="question-div" class="relative">
+            <div class="well question current">
+                <button type="button" class="btn btn-xs btn-default back-button"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+                <h3>Is this a question?</h3>
+                <p>
+                    <button type="button" class="btn btn-lg btn-default answer" data-answer="Yes">Yes</button>
+                    <button type="button" class="btn btn-lg btn-default answer" data-answer="No">No</button>
+                </p>
 
+            </div>
         </div>
         <div class="progress">
             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span class="sr-only">60% Complete</span></div>
@@ -61,13 +65,26 @@
 {% block js %}
 <script>
 $( document ).ready(function() {
+
+    function createQuestion(title){
+        var questionDiv = $('<div class="well relative question current"></div');
+        questionDiv.append($('<button type="button" class="btn btn-xs btn-default back-button"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>'));
+        questionDiv.append($('<h3>'+ title +'</h3>'));
+        questionDiv.append($('<p><button type="button" class="btn btn-lg btn-default answer" data-answer="Yes">Yes</button><button type="button" class="btn btn-lg btn-default answer" data-answer="No">No</button></p>'));
+        return questionDiv;
+
+    }
+
     $('.answer').click(function(){
         console.log($(this).data('answer'));
-        $('#current-question-well').animate({
+        var current = $('.current');
+        current.animate({
             top: '-250px'
         }, 5000, function(){
-            createQuestion();
+            $('.current').removeClass('current');
+            $('#question-div').append(createQuestion('Question 2'));
         });
+        current.detach();
     })
 });
 </script>
