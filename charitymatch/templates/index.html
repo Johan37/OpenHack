@@ -9,9 +9,9 @@
             position:relative;
         }
         .current {
-            position: absolute;
-            top: 0;
+
         }
+
     </style>
 {% endblock %}
 
@@ -20,7 +20,7 @@
 <div class="row">
     <div class="col-md-8 col-s-12">
         <div id="question-div" class="relative">
-            <div class="well question current">
+            <div class="well relative question current">
                 <button type="button" class="btn btn-xs btn-default back-button"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
                 <h3>Is this a question?</h3>
                 <p>
@@ -74,7 +74,7 @@
 $( document ).ready(function() {
 
     function createQuestion(title){
-        var questionDiv = $('<div class="well relative question current"></div');
+        var questionDiv = $('<div class="well relative question current newquestion"></div');
         questionDiv.append($('<button type="button" class="btn btn-xs btn-default back-button"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>'));
         questionDiv.append($('<h3>'+ title +'</h3>'));
         questionDiv.append($('<p><button type="button" class="btn btn-lg btn-default answer" data-answer="Yes">Yes</button><button type="button" class="btn btn-lg btn-default answer" data-answer="No">No</button></p>'));
@@ -87,11 +87,15 @@ $( document ).ready(function() {
         var current = $('.current');
         current.animate({
             top: '-250px'
-        }, 5000, function(){
+        }, 700, function(){
+            current.detach();
             $('.current').removeClass('current');
-            $('#question-div').append(createQuestion('Question 2'));
+            var newQuestion = createQuestion('Question 2').hide();
+            $('#question-div').append(newQuestion);
+            newQuestion.fadeIn(400);
+
         });
-        current.detach();
+        
     })
 });
 </script>
