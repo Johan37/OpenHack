@@ -36,28 +36,35 @@
         </div>
     </div>
     <div class="col-md-4 col-s-12">
-        <div class="well">
-            Here be orgs.
+
+        <div class="well" id="gridwell">
+            {% if orgs %}
+            <ul class="list-unstyled">
+                {% for organisation in orgs %}
+                <li class="col-md-4 parent gridelement">
+
+                    <!--Organisation: ID {{organisation.id}} - -->
+                    <!--<a href="/organisation/{{organisation.id}}">{{organisation.name}}</a>-->
+                    <div class="child gridthumb">
+                        <a href="/organisation/{{organisation.id}}">
+                            <img src="/static/charitymatch/organisations/image/{{organisation.get_name}}" width="100">
+                        </a>
+                    </div>
+
+                </li>
+                {% endfor %}
+            </ul>
+
+            <span id="endpoint"></span>
+            {% else %}
+            <p>No organisations are available</p>
+            {% endif %}
         </div>
+
+
     </div>
 </div>
 
-{% if orgs %}
-    <ul>
-    {% for organisation in orgs %}
-        <li>
-                Organisation: ID {{organisation.id}} -
-                <a href="/organisation/{{organisation.id}}">{{organisation.name}}</a>
-
-                <!--<img src="/{{organisaton.image.url}}">-->
-                <img src="/static/charitymatch/organisations/image/{{organisation.get_name}}">
-            </p>
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No organisations are available</p>
-{% endif %}
 
 
 {% endblock %}
