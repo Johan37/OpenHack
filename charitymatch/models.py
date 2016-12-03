@@ -1,14 +1,26 @@
 from django.db import models
 
-class Category_type(models.Model):
-    name = models.CharField(max_length=200)
+class Category(models.Model):
+    media_path = "charitymatch/categories/image"
+    upload_path = "{}/static/charitymatch/categories/image".format("charitymatch")
+
+    ### Fields ###
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to=upload_path, default=None, null=True, blank=True)
+    image_text = models.CharField(max_length=300, blank=True)
 
     def __str__(self):
         return self.name
 
-class Category(models.Model):
-    name = models.CharField(max_length=200)
-    type = models.ForeignKey(Category_type, on_delete=models.CASCADE, null=True)
+class SubCategory(models.Model):
+    media_path = "charitymatch/subcategories/image"
+    upload_path = "{}/static/charitymatch/subcategories/image".format("charitymatch")
+
+    ### Fields ###
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to=upload_path, default=None, null=True, blank=True)
+    image_text = models.CharField(max_length=300, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
@@ -40,9 +52,9 @@ class Organisation(models.Model):
     media_path = "charitymatch/organisations/image"
     upload_path = "{}/static/charitymatch/organisations/image".format("charitymatch")
 
-    image = models.ImageField(upload_to=upload_path, default=None, null=True)
+    image = models.ImageField(upload_to=upload_path, default=None, null=True, blank=True)
     description = models.CharField(max_length=1000)
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(SubCategory)
     countries = models.ManyToManyField(Country)
     #methods = models.ManyToManyField(Method)
 
