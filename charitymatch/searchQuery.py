@@ -25,43 +25,16 @@ def getSearchResults(request):
 
     search_param_dict = searchParameters['answers']
 
-
     organisationList = list(Organisation.objects.all())
-
-
     picked_subjects = search_param_dict['subject']
-    picked_subjects.append('Homless')
 
     print('Picked subjects: {}'.format(picked_subjects))
 
     matching_entries = []
     for subject in picked_subjects:
 
-        matching_entries = [org for org in organisationList if subject in list(org.categories.all())]
+        matching_entries = [org for org in organisationList if subject in get_organisation_categories(org)]
 
-
-
-    print('Matching entires {}'.format(matching_entries))
-
-
-
-    # for key in search_param_dict:
-    #     print(search_param_dict[key])
-    #
-    #     picked_values_list = search_param_dict[key]
-
-
-
-
-
-
-
-
-
-
-    # Get the data from the database
-
-    # organisationList = list(Organisation.objects.values("name", "categories", "countries"))
     print(organisationList)
 
     organisationCategories = list(Organisation.objects.values("categories"))
@@ -74,13 +47,15 @@ def getSearchResults(request):
             print("Name: {}".format(sub.name))
 
 
-    #Calculate score per organisation
+    # Calculate score per organisation
 
-    #Send response with data
+    # Send response with data
     return JsonResponse({"data": {}});
 
 
 
+def get_organisation_categories(org):
+    return [org.name for org in list(org.categories.all())]
 
 
 
@@ -88,7 +63,8 @@ def getSearchResults(request):
 
 
 
-    #organisationList = Organisation.objects.values_list("name")
+
+        #organisationList = Organisation.objects.values_list("name")
     #print(organisationList)
 
     #organisationList = Organisation.objects.all()
