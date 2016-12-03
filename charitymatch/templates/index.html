@@ -228,10 +228,10 @@ $( document ).ready(function() {
           data: JSON.stringify({ answers: answers })
         })
                 .done(function( msg ) {
-                    console.log("Data Saved: " + msg);
+                    console.log("Data Saved: " + msg.data);
 
-                    var dummy_json = get_dummy_json();
-                    show_relevant_thumbs(dummy_json);
+//                    var dummy_json = get_dummy_json();
+                    show_relevant_thumbs(msg);
                 })
                 .fail(function(e) {
                     console.log("Fail!");
@@ -253,6 +253,13 @@ var get_dummy_json = function() {
 };
 
 var show_relevant_thumbs = function(target_json) {
+
+    console.log("show relevant thumbs");
+    console.log(target_json);
+
+//    var target_json = JSON.parse(target_json_string);
+
+//    console.log(target_json);
 
     var orgs = target_json.organisations;
     var active_orgs = [];

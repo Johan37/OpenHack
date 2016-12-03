@@ -24,26 +24,29 @@ def getSearchResults(request):
     print("Search params {}".format(searchParameters['answers']))
     search_param_dict = searchParameters['answers']
     picked_subjects = search_param_dict['subject']
-    picked_subjects.append("Homless")
+    # picked_subjects.append("Homless")
     print('Picked subjects: {}'.format(picked_subjects))
 
     #Picked_regions...?
 
     organisationList = list(Organisation.objects.all())
 
-    matching_entries = organisationList
+    matching_entries = []
     for subject in picked_subjects:
 
-        matching_entries = [org for org in matching_entries if subject in get_organisation_categories(org)]
+        # print("Subject: {}".format(subject))
+        current_matching_entires = [org for org in organisationList if subject in get_organisation_parent_categories(org)]
+        matching_entries = list(set(current_matching_entires).union(set(matching_entries)))
 
     # organisationCategories = list(Organisation.objects.values("categories"))
 
-    for org in organisationList:
+    print('Matching entires: {}'.format(matching_entries))
 
-        categories = list(org.categories.all())
 
-        for sub in categories:
-            print("Name: {}".format(sub.name))
+    # for org in organisationList:
+    #     sub_categories = list(org.categories.all())
+    #     for sub in sub_categories:
+    #         print("Name: {}".format(sub.name))
 
 
     # Calculate score per organisation
@@ -53,12 +56,21 @@ def getSearchResults(request):
     return JsonResponse({"data": filtered_ids})
 
 
+def get_organisation_parent_categories(org):
 
-def get_organisation_categories(org):
-    return [org.name for org in list(org.categories.all())]
+    # Retrieve list with sub categories for organisation
+    sub_categories = list(org.categories.all())
 
+    # Retrieve matching parent categories for each sub category
+    # ...and get lowercase
+    parent_categories_redundant = [sub_category.category.name.lower() for sub_category in sub_categories]
 
+    # Remove redundant parent categories
+    parent_categories_unique = list(set(parent_categories_redundant))
 
+    # print("Parent organisation category: {}".format(parent_categories_unique))
+
+    return parent_categories_unique
 
 
 
