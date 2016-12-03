@@ -1,12 +1,37 @@
 from django.db import models
 
-
-class Category(models.Model):
+class Category_type(models.Model):
     name = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name
 
+class Category(models.Model):
+    name = models.CharField(max_length=200)
+    type = models.ForeignKey(Category_type, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.name
+
+#class Region(models.Model):
+#    name = models.CharField(max_length=200)
+#
+#    def __str__(self):
+#        return self.name
+#
+#class Country(models.Model):
+#    name = models.CharField(max_length=200)
+#    regions = models.OneToManyField(Region)
+#
+#    def __str__(self):
+#        return self.name
+#
+#class Method(models.Model):
+#    name = modles.Charfield(max_length=200)
+#    description = models.Charfield(max_length=1000)
+#
+#    def __str__(self):
+#        return self.name
 
 class Organisation(models.Model):
     name = models.CharField(max_length=200)
@@ -18,6 +43,8 @@ class Organisation(models.Model):
     image = models.ImageField(upload_to=upload_path, default=None, null=True)
     description = models.CharField(max_length=1000)
     categories = models.ManyToManyField(Category)
+    #countries = models.ManyToManyField(Country)
+    #methods = models.ManyToManyField(Method)
 
     @property
     def get_name(self):
