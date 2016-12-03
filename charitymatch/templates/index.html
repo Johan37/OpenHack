@@ -34,6 +34,12 @@
             text-align: center;
         }
  }
+        .thumb {
+            margin-bottom: 30px;
+        }
+        .img-responsive {
+            max-height: 80px;
+        }
     </style>
 {% endblock %}
 
@@ -130,17 +136,14 @@
                 {% if orgs %}
                 <!--<ul class="list-unstyled">-->
                 {% for organisation in orgs %}
-                <div class="col-md-4 col-sm-2 col-xs-3 org_thumb" id="org{{organisation.id}}">
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb org_thumb" id="org{{organisation.id}}" >
 
                     <!--Organisation: ID {{organisation.id}} - -->
                     <!--<a href="/organisation/{{organisation.id}}">{{organisation.name}}</a>-->
-                    <div class="child gridthumb center-block">
-                        <a href="/organisation/{{organisation.id}}">
+                        <a href="/organisation/{{organisation.id}}" class="thumbnail">
                             <img src="/static/charitymatch/organisations/image/{{organisation.get_name}}"
-                                 title="{{organisation.name}}"
-                                 class="thumb_pic" width="100px">
+                                 title="{{organisation.name}}" class="img-responsive">
                         </a>
-                    </div>
 
                 </div>
                 {% endfor %}
