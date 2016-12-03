@@ -1,12 +1,15 @@
 import json
 
+from django.http import HttpResponse
+
 def getSearchResults(request):
     #translate the JSON body to a Python Dictionary
     searchParameters = []
     if request.is_ajax():
-        if request.method == 'GET':
-            print('Raw Data: "%s"' % request.body)
-            searchParameters = json.load(request.body)
+        if request.method == 'POST':
+            body_unicode = request.body.decode('utf-8')
+            print('Raw Data: "%s"' % body_unicode)
+            searchParameters = json.loads(body_unicode)
         else:
             return HttpResponse("Fail")
     else:
