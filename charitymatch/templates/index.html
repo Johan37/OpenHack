@@ -124,8 +124,11 @@ $( document ).ready(function() {
           data: JSON.stringify({ answers: answers })
         })
           .done(function( msg ) {
-            alert( "Data Saved: " + msg );
-          });
+            console.log("Data Saved: " + msg );
+          })
+            .fail(function(e) {
+            console.log(e );
+            });
 
         var current = $('.current');
         current.animate({
