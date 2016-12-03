@@ -8,8 +8,13 @@
         .relative {
             position:relative;
         }
-        .current {
-
+        .center-button {
+            display:block;
+            margin: 12px auto 0 auto;
+        }
+        .button-text {
+            font-size:100%;
+            text-align:center;
         }
 
     </style>
@@ -19,20 +24,79 @@
 
 <div class="row">
     <div class="col-md-8 col-s-12">
-        <div id="question-div" class="relative">
-            <div class="well relative question current">
-                <button type="button" class="btn btn-xs btn-default back-button"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
-                <h3>Is this a question?</h3>
-                <p>
-                    <button type="button" class="btn btn-lg btn-default answer" data-answer="Yes">Yes</button>
-                    <button type="button" class="btn btn-lg btn-default answer" data-answer="No">No</button>
-                </p>
+        <div id="question-div">
+            <div class="well">
+                <h2>Form header</h2>
+                <div>
+                    <h3>Interest subject</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-lg btn-default center-button" data-answer="Yes"><i class="fa fa-leaf" aria-hidden="true"></i></button>
+                            <p class="button-text">Text</p>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-lg btn-default center-button" data-answer="Yes"><i class="fa fa-leaf" aria-hidden="true"></i></button>
+                            <p class="button-text">Text</p>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-lg btn-default center-button" data-answer="Yes"><i class="fa fa-leaf" aria-hidden="true"></i></button>
+                            <p class="button-text">Text</p>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-lg btn-default center-button" data-answer="Yes"><i class="fa fa-leaf" aria-hidden="true"></i></button>
+                            <p class="button-text">Text</p>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-lg btn-default center-button" data-answer="Yes"><i class="fa fa-leaf" aria-hidden="true"></i></button>
+                            <p class="button-text">Text</p>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-lg btn-default center-button" data-answer="Yes"><i class="fa fa-leaf" aria-hidden="true"></i></button>
+                            <p class="button-text">Text</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Size</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-lg btn-default center-button" data-answer="Yes"><i class="fa fa-home" aria-hidden="true"></i></button>
+                            <p class="button-text">Text</p>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-lg btn-default center-button" data-answer="Yes"><i class="fa fa-home" aria-hidden="true"></i></button>
+                            <p class="button-text">Text</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Area</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-lg btn-default center-button" data-answer="Yes"><i class="fa fa-globe" aria-hidden="true"></i></button>
+                            <p class="button-text">Text</p>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-lg btn-default center-button" data-answer="Yes"><i class="fa fa-globe" aria-hidden="true"></i></button>
+                            <p class="button-text">Text</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>How to help</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-lg btn-default center-button" data-answer="Yes"><i class="fa fa-money" aria-hidden="true"></i></button>
+                            <p class="button-text">Text</p>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-lg btn-default center-button" data-answer="Yes"><i class="fa fa-money" aria-hidden="true"></i></button>
+                            <p class="button-text">Text</p>
+                        </div>
+                    </div>
+                </div>
 
             </div>
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span class="sr-only">60% Complete</span></div>
-            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%"><span class="sr-only">10% current</span></div>
         </div>
     </div>
 
@@ -106,14 +170,6 @@ $( document ).ready(function() {
 
     var answers = [];
 
-    function createQuestion(title){
-        var questionDiv = $('<div class="well relative question current newquestion"></div');
-        questionDiv.append($('<button type="button" class="btn btn-xs btn-default back-button"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>'));
-        questionDiv.append($('<h3>'+ title +'</h3>'));
-        questionDiv.append($('<p><button type="button" class="btn btn-lg btn-default answer" data-answer="Yes">Yes</button><button type="button" class="btn btn-lg btn-default answer" data-answer="No">No</button></p>'));
-        return questionDiv;
-
-    }
 
     $('.answer').click(function(){
         //Answer was clicked.
@@ -142,17 +198,7 @@ $( document ).ready(function() {
                     console.log(e);
                 });
 
-        var current = $('.current');
-        current.animate({
-            top: '-250px'
-        }, 700, function(){
-            current.detach();
-            $('.current').removeClass('current');
-            var newQuestion = createQuestion('Question 2').hide();
-            $('#question-div').append(newQuestion);
-            newQuestion.fadeIn(400);
 
-        });
         
     })
 });
