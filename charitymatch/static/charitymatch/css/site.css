@@ -14,9 +14,9 @@
     text-align:center;
 }
 
-#gridwell {
-    /*width: 100%;*/
-    /*height: 480px;*/
+.thumb_pic {
+    max-height: 100px;
+    /*background-color: white;*/
 }
 
 p {
