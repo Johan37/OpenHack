@@ -63,8 +63,12 @@ class Organisation(models.Model):
 class Answer(models.Model):
     text = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.text
+
 class Question(models.Model):
     question = models.CharField(max_length=500)
     answers = models.ManyToManyField(Answer)
 
-
+    def __str__(self):
+        return self.question
