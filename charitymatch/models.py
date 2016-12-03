@@ -55,7 +55,7 @@ class Organisation(models.Model):
     image = models.ImageField(upload_to=upload_path, default=None, null=True, blank=True)
     description = models.CharField(max_length=1000)
     categories = models.ManyToManyField(SubCategory)
-    countries = models.ManyToManyField(Country)
+    regions = models.ManyToManyField(Region)
     methods = models.ManyToManyField(Method)
 
     @property
