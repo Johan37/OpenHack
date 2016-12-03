@@ -47,7 +47,7 @@ class Country(models.Model):
 
 class Organisation(models.Model):
     name = models.CharField(max_length=200)
-    link = models.CharField(max_length=200)
+    link = models.URLField(max_length=200)
 
     media_path = "charitymatch/organisations/image"
     upload_path = "{}/static/charitymatch/organisations/image".format("charitymatch")
