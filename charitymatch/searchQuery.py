@@ -1,6 +1,6 @@
 import json
 
-def getSearchResult(request):
+def getSearchResults(request):
     #translate the JSON body to a Python Dictionary
     searchParameters = []
     if request.is_ajax():
