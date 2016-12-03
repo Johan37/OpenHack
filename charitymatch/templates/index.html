@@ -114,7 +114,7 @@
                 {% if orgs %}
                 <!--<ul class="list-unstyled">-->
                 {% for organisation in orgs %}
-                <div class="col-md-4 col-sm-2 col-xs-3">
+                <div class="col-md-4 col-sm-2 col-xs-3 org_thumb" id="org{{organisation.id}}">
 
                     <!--Organisation: ID {{organisation.id}} - -->
                     <!--<a href="/organisation/{{organisation.id}}">{{organisation.name}}</a>-->
@@ -122,7 +122,7 @@
                         <a href="/organisation/{{organisation.id}}">
                             <img src="/static/charitymatch/organisations/image/{{organisation.get_name}}"
                                  title="{{organisation.name}}"
-                                 width="100" id="org{{organisation.id}}" class="org_thumb">
+                                 width="100">
                         </a>
                     </div>
 
@@ -229,7 +229,6 @@ var show_relevant_thumbs = function(target_json) {
     $('.org_thumb').each(function(i, obj) {
 
         var element_id = obj.id;
-
         var dom_id = "#" + element_id;
 
         if (arrayContains(element_id, active_orgs)) {
@@ -237,6 +236,8 @@ var show_relevant_thumbs = function(target_json) {
         }
         else {
             $(dom_id).fadeOut(400);
+//            $(dom_id).parent().css("display", "none");
+//            $(dom_id).parent().parent().css("overflow", "hidden");
         }
     });
 
