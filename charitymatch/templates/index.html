@@ -112,12 +112,12 @@
     </div>
 
     <div class="col-md-4">
-        <div class="row">
-            <div class="well">
+        <div class="well">
+            <div class="row">
                 {% if orgs %}
                 <!--<ul class="list-unstyled">-->
                 {% for organisation in orgs %}
-                <div class="col-md-4 col-sm-2 col-xs-3">
+                <div class="col-md-4 col-sm-2 col-xs-3 org_thumb" id="org{{organisation.id}}">
 
                     <!--Organisation: ID {{organisation.id}} - -->
                     <!--<a href="/organisation/{{organisation.id}}">{{organisation.name}}</a>-->
@@ -186,18 +186,26 @@ $( document ).ready(function() {
         //Answer was clicked.
         var value = $(this).data('value');
         var question = $(this).data('question');
+
+
         if (question != 'subject') {
+            //Change active states accordingly
+            $('[data-question="' + question +'"]').removeClass('active');
+            //Delete value if it was previously there, otherwise set it.
             if (answers[question] == value) {
                 delete answers[question]
             } else {
                 answers[question] = value;
+                $(this).addClass('active');
             }
         } else {
+            //subject behaves as a list and items can be added or removed.
+            $(this).toggleClass('active');
             var index = answers[question].indexOf(value);
             if (index < 0) {
                 answers[question].push(value);
             } else {
-                answers.splice(index, 1);
+                answers[question].splice(index, 1);
             }
         }
         console.log(question);
@@ -212,16 +220,67 @@ $( document ).ready(function() {
           contentType: 'application/json; charset=utf-8',
           data: JSON.stringify({ answers: answers })
         })
-          .done(function( msg ) {
-            console.log("Data Saved: " + msg );
-          })
-            .fail(function(e) {
-            console.log(e );
-            });
+                .done(function( msg ) {
+                    console.log("Data Saved: " + msg);
 
+                    var dummy_json = get_dummy_json();
+                    show_relevant_thumbs(dummy_json);
+                })
+                .fail(function(e) {
+                    console.log("Fail!");
 
-        
+                    console.log(e);
+                });
     })
 });
+
+
+var get_dummy_json = function() {
+
+    var dummy_text = '{ "organisations" : [' +
+            '{ "name":"Amnesty" , "id":"1", "pic":"/static/charitymatch/organisations/image/amnesty.jpg" },' +
+            '{ "name":"WWF", "id":"2", "pic":"/static/charitymatch/organisations/image/wwf.png" },' +
+            '{ "firstName":"SIDA" , "id":"10", "pic":"/static/charitymatch/organisations/image/sida.png" } ]}';
+
+    return JSON.parse(dummy_text);
+};
+
+var show_relevant_thumbs = function(target_json) {
+
+    var orgs = target_json.organisations;
+    var active_orgs = [];
+
+    for (var i = 0; i < orgs.length; i++) {
+        active_orgs.push("org" + orgs[i].id);
+    }
+
+    $('.org_thumb').each(function(i, obj) {
+
+        var element_id = obj.id;
+        var dom_id = "#" + element_id;
+
+        if (arrayContains(element_id, active_orgs)) {
+            $(dom_id).fadeIn(400);
+        }
+        else {
+            $(dom_id).fadeOut(400);
+//            $(dom_id).parent().css("display", "none");
+//            $(dom_id).parent().parent().css("overflow", "hidden");
+        }
+    });
+
+
+};
+
+
+function arrayContains(needle, arrhaystack) {
+    return (arrhaystack.indexOf(needle) > -1);
+}
+
+
+
+
+
 </script>
 {% endblock %}
+

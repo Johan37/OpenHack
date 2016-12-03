@@ -4,10 +4,13 @@ from django.template import loader
 
 from .models import Organisation
 
+from random import shuffle
+
 
 def index(request):
 
     organisations = list(Organisation.objects.order_by('name'))
+    shuffle(organisations)
 
     template = loader.get_template('index.html')
 
