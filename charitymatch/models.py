@@ -38,12 +38,12 @@ class Country(models.Model):
     def __str__(self):
         return self.name
 
-#class Method(models.Model):
-#    name = modles.Charfield(max_length=200)
-#    description = models.Charfield(max_length=1000)
-#
-#    def __str__(self):
-#        return self.name
+class Method(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.name
 
 class Organisation(models.Model):
     name = models.CharField(max_length=200)
@@ -56,7 +56,7 @@ class Organisation(models.Model):
     description = models.CharField(max_length=1000)
     categories = models.ManyToManyField(SubCategory)
     countries = models.ManyToManyField(Country)
-    #methods = models.ManyToManyField(Method)
+    methods = models.ManyToManyField(Method)
 
     @property
     def get_name(self):
