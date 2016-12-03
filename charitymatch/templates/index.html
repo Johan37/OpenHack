@@ -195,19 +195,14 @@ $( document ).ready(function() {
                 .done(function( msg ) {
                     console.log("Data Saved: " + msg);
 
-
+                    var dummy_json = get_dummy_json();
+                    show_relevant_thumbs(dummy_json);
                 })
                 .fail(function(e) {
                     console.log("Fail!");
 
-                    var dummy_json = get_dummy_json();
-                    show_relevant_thumbs(dummy_json);
-
                     console.log(e);
                 });
-
-
-        
     })
 });
 
@@ -235,12 +230,13 @@ var show_relevant_thumbs = function(target_json) {
 
         var element_id = obj.id;
 
+        var dom_id = "#" + element_id;
+
         if (arrayContains(element_id, active_orgs)) {
-            $("#obj" + obj.id).show();
+            $(dom_id).fadeIn(400);
         }
         else {
-            $(obj.id).toggle();
-            $("#" + obj.id).hide();
+            $(dom_id).fadeOut(400);
         }
     });
 
