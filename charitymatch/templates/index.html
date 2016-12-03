@@ -73,6 +73,8 @@
 <script>
 $( document ).ready(function() {
 
+    var answers = [];
+
     function createQuestion(title){
         var questionDiv = $('<div class="well relative question current newquestion"></div');
         questionDiv.append($('<button type="button" class="btn btn-xs btn-default back-button"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>'));
@@ -83,7 +85,18 @@ $( document ).ready(function() {
     }
 
     $('.answer').click(function(){
-        console.log($(this).data('answer'));
+        //Answer was clicked.
+        var answer = $(this).data('answer');
+        answers.push(answer);
+        //Ajax request
+        $.ajax({
+          url: "searchquery",
+          data: { answers: answers }
+        })
+          .done(function( msg ) {
+            alert( "Data Saved: " + msg );
+          });
+
         var current = $('.current');
         current.animate({
             top: '-250px'
