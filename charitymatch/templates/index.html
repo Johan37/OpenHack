@@ -99,30 +99,34 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4 col-s-12">
 
-        <div class="well" id="gridwell">
-            {% if orgs %}
-            <ul class="list-unstyled">
+    <div class="col-md-4">
+        <div class="row">
+            <div class="well">
+                {% if orgs %}
+                <!--<ul class="list-unstyled">-->
                 {% for organisation in orgs %}
-                <li class="col-md-4 parent gridelement">
+                <div class="col-md-4 col-sm-2 col-xs-3">
 
                     <!--Organisation: ID {{organisation.id}} - -->
                     <!--<a href="/organisation/{{organisation.id}}">{{organisation.name}}</a>-->
-                    <div class="child gridthumb">
+                    <div class="child gridthumb center-block">
                         <a href="/organisation/{{organisation.id}}">
-                            <img src="/static/charitymatch/organisations/image/{{organisation.get_name}}" width="100">
+                            <img src="/static/charitymatch/organisations/image/{{organisation.get_name}}"
+                                 title="{{organisation.name}}"
+                                 width="100">
                         </a>
                     </div>
 
-                </li>
+                </div>
                 {% endfor %}
-            </ul>
+                <!--</ul>-->
 
-            <span id="endpoint"></span>
-            {% else %}
-            <p>No organisations are available</p>
-            {% endif %}
+                <span id="endpoint"></span>
+                {% else %}
+                <p>No organisations are available</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>

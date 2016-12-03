@@ -1,9 +1,9 @@
 import json
 
-from django.http import HttpResponse
+from django.http import JsonResponse
 
 def getSearchResults(request):
-    #translate the JSON body to a Python Dictionary
+    #translate the JSON body to Python
     searchParameters = []
     if request.is_ajax():
         if request.method == 'POST':
@@ -11,57 +11,14 @@ def getSearchResults(request):
             print('Raw Data: "%s"' % body_unicode)
             searchParameters = json.loads(body_unicode)
         else:
-            return HttpResponse("Fail")
+            return JsonResponse(status=500, data={'status':'false','message':"Internal error: wrong method type (method was " + request.method + ")"})
     else:
-        return HttpResponse("Fail")
+        return JsonResponse(status=500, data={'status':'false','message':"Internal error: The request is not ajax"})
     print(searchParameters)
 
+    #Get the data from the database
 
-    return HttpResponse("OK");
+    #Calculate score per organisation
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""
-class searchParameters(object):
-    def __init__(self):
-        self.checkboxes = [[]]
-
-    def __str__(self):
-        return "Class searchParameters"
-
-class questionAndAnswer(object):
-    def __init__(self):
-        self.question = ""
-        self.score = -1
-        self.important = False
-
-    def __str__(self):
-        return "q: " + self.question + ", s: " + self.score
-
-def getSearchResult(searchParameters):
-
-    return results
-
-a = searchParameters()
-print(a.checkboxes)
-"""
+    #Send response with data
+    return JsonResponse({"data": {}});
