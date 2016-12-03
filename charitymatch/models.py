@@ -13,19 +13,19 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-#class Region(models.Model):
-#    name = models.CharField(max_length=200)
-#
-#    def __str__(self):
-#        return self.name
-#
-#class Country(models.Model):
-#    name = models.CharField(max_length=200)
-#    regions = models.OneToManyField(Region)
-#
-#    def __str__(self):
-#        return self.name
-#
+class Region(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+class Country(models.Model):
+    name = models.CharField(max_length=200)
+    regions = models.ManyToManyField(Region)
+
+    def __str__(self):
+        return self.name
+
 #class Method(models.Model):
 #    name = modles.Charfield(max_length=200)
 #    description = models.Charfield(max_length=1000)
@@ -43,7 +43,7 @@ class Organisation(models.Model):
     image = models.ImageField(upload_to=upload_path, default=None, null=True)
     description = models.CharField(max_length=1000)
     categories = models.ManyToManyField(Category)
-    #countries = models.ManyToManyField(Country)
+    countries = models.ManyToManyField(Country)
     #methods = models.ManyToManyField(Method)
 
     @property
