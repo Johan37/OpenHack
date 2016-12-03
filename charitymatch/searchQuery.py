@@ -4,7 +4,7 @@ from django.http import JsonResponse
 
 #Getting stuff from database
 from django.db import models
-from .models import Category, SubCategory, Organisation, Question
+from .models import Category, SubCategory, Organisation
 
 def getSearchResults(request):
 
