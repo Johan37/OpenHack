@@ -50,7 +50,7 @@
                         <a href="/organisation/{{organisation.id}}">
                             <img src="/static/charitymatch/organisations/image/{{organisation.get_name}}"
                                  title="{{organisation.name}}"
-                                 width="100">
+                                 width="100" id="org{{organisation.id}}" class="org_thumb">
                         </a>
                     </div>
 
@@ -119,6 +119,7 @@ $( document ).ready(function() {
         //Answer was clicked.
         var answer = $(this).data('answer');
         answers.push(answer);
+
         //Ajax request
         $.ajax({
           method: 'POST',
@@ -127,12 +128,19 @@ $( document ).ready(function() {
           contentType: 'application/json; charset=utf-8',
           data: JSON.stringify({ answers: answers })
         })
-          .done(function( msg ) {
-            console.log("Data Saved: " + msg );
-          })
-            .fail(function(e) {
-            console.log(e );
-            });
+                .done(function( msg ) {
+                    console.log("Data Saved: " + msg);
+
+
+                })
+                .fail(function(e) {
+                    console.log("Fail!");
+
+                    var dummy_json = get_dummy_json();
+                    show_relevant_thumbs(dummy_json);
+
+                    console.log(e);
+                });
 
         var current = $('.current');
         current.animate({
@@ -148,5 +156,52 @@ $( document ).ready(function() {
         
     })
 });
+
+
+var get_dummy_json = function() {
+
+    var dummy_text = '{ "organisations" : [' +
+            '{ "name":"Amnesty" , "id":"1", "pic":"/static/charitymatch/organisations/image/amnesty.jpg" },' +
+            '{ "name":"WWF", "id":"2", "pic":"/static/charitymatch/organisations/image/wwf.png" },' +
+            '{ "firstName":"SIDA" , "id":"10", "pic":"/static/charitymatch/organisations/image/sida.png" } ]}';
+
+    return JSON.parse(dummy_text);
+};
+
+var show_relevant_thumbs = function(target_json) {
+
+    var orgs = target_json.organisations;
+    var active_orgs = [];
+
+    for (var i = 0; i < orgs.length; i++) {
+        active_orgs.push("org" + orgs[i].id);
+    }
+
+    $('.org_thumb').each(function(i, obj) {
+
+        var element_id = obj.id;
+
+        if (arrayContains(element_id, active_orgs)) {
+            $("#obj" + obj.id).show();
+        }
+        else {
+            $(obj.id).toggle();
+            $("#" + obj.id).hide();
+        }
+    });
+
+
+};
+
+
+function arrayContains(needle, arrhaystack) {
+    return (arrhaystack.indexOf(needle) > -1);
+}
+
+
+
+
+
 </script>
 {% endblock %}
+
