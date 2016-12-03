@@ -22,22 +22,21 @@ def getSearchResults(request):
 
     # Print the users search parameters. This is compared with organisation parameters
     print("Search params {}".format(searchParameters['answers']))
-
     search_param_dict = searchParameters['answers']
-
-    organisationList = list(Organisation.objects.all())
     picked_subjects = search_param_dict['subject']
-
+    picked_subjects.append("Homless")
     print('Picked subjects: {}'.format(picked_subjects))
 
-    matching_entries = []
+    #Picked_regions...?
+
+    organisationList = list(Organisation.objects.all())
+
+    matching_entries = organisationList
     for subject in picked_subjects:
 
-        matching_entries = [org for org in organisationList if subject in get_organisation_categories(org)]
+        matching_entries = [org for org in matching_entries if subject in get_organisation_categories(org)]
 
-    print(organisationList)
-
-    organisationCategories = list(Organisation.objects.values("categories"))
+    # organisationCategories = list(Organisation.objects.values("categories"))
 
     for org in organisationList:
 
@@ -50,7 +49,8 @@ def getSearchResults(request):
     # Calculate score per organisation
 
     # Send response with data
-    return JsonResponse({"data": {}});
+    filtered_ids = [obj.id for obj in matching_entries]
+    return JsonResponse({"data": filtered_ids})
 
 
 
