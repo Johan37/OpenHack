@@ -267,11 +267,11 @@ var show_relevant_thumbs = function(target_json) {
 
 //    console.log(target_json);
 
-    var orgs = target_json.organisations;
+    var orgs = target_json.data;
     var active_orgs = [];
 
     for (var i = 0; i < orgs.length; i++) {
-        active_orgs.push("org" + orgs[i].id);
+        active_orgs.push("org" + orgs[i]);
     }
 
     $('.org_thumb').each(function(i, obj) {
