@@ -228,17 +228,17 @@ $( document ).ready(function() {
 
         if (question != 'subject') {
             //Change active states accordingly
-            $('[data-question="' + question +'"]').removeClass('active');
+            $('[data-question="' + question +'"]').removeClass('active btn-primary');
             //Delete value if it was previously there, otherwise set it.
             if (answers[question] == value) {
                 delete answers[question]
             } else {
                 answers[question] = value;
-                $(this).addClass('active');
+                $(this).addClass('active btn-primary');
             }
         } else {
             //subject behaves as a list and items can be added or removed.
-            $(this).toggleClass('active');
+            $(this).toggleClass('active btn-primary');
             var index = answers[question].indexOf(value);
             if (index < 0) {
                 answers[question].push(value);
