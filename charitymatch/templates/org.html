@@ -1,15 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Charity organisations present in the database</h1>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4">
+            <h1>{{org.name}}</h1>
+        </div>
+        <div>
+            <a href="{{org.link}}">
+                <img src="{{org.get_image_path}}">
+            </a>
+        </div>
+        <!--<img src="/static/charitymatch/organisations/image/{{org.get_name}}" width="100">-->
+    </div>
+    <p>{{org.description}}</p>
+
+    <p>
+        <a href="{{org.link}}">Go to the home page</a>
+    </p>
+
+</div>
 
 
-    <ul>
-        <li>
-            <p>
-                Organisation: ID {{org.id}} -
-                <a href="/organisation/{{organisation.id}}">{{org.name}}</a>
-            </p>
-        </li>
-    </ul>
+
 {% endblock %}
