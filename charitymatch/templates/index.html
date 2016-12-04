@@ -34,6 +34,8 @@
             width: 100%;
             background-image: url('/static/charitymatch/images/pexels-photo-201706.jpeg');
             margin-bottom:20px;
+            max-width: 1440px;
+            margin: 0 auto 20px auto;
         }
 
     @media (min-width: 768px) { 
@@ -77,6 +79,9 @@
         }
 
 
+        .container-fluid {
+            max-width: 1470px;
+        }
 
         .hero h1 {
             color: white;
@@ -92,7 +97,7 @@
 
 {% block content %}
 <div class="hero">
-<h1>CharityMatch</h1>
+<h1>CharityMatch <span class="icon-heart"></span></h1>
 <p class="subtitle">Some text goes here <br>when I figure out what to write</p>
 </div>
 
