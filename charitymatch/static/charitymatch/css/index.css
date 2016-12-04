@@ -1,0 +1,98 @@
+
+.back-button {
+    float:right;
+}
+.relative {
+    position:relative;
+}
+.center-button {
+    display:block;
+    margin: 0 auto 0 auto;
+    padding: 7px;
+
+}
+.mt1 {
+    margin-top: 12px;
+    height: 100px;
+}
+.button-text {
+    font-size:100%;
+    text-align:center;
+}
+
+button > span {
+  font-size: 3em;
+}
+.hero {
+    padding: 70px 40px 100px 40px;
+    text-align: center;
+    color: white;
+    height: 300px;
+    width: 100%;
+    background-image: url('/static/charitymatch/images/pexels-photo-201706.jpeg');
+    margin-bottom:20px;
+    max-width: 1440px;
+    margin: 0 auto 20px auto;
+}
+
+.pl1 {
+    padding-left:30px;
+}
+.hero h1 {
+    color: white;
+    font-size:300%;
+}
+
+@media (min-width: 768px) {
+    button > span {
+          font-size: 5em;
+    }
+    text-center {
+        text-align: center;
+    }
+    .hero {
+        padding: 70px 130px 100px 60px;
+        text-align:right;
+    }
+    .hero h1 {
+        font-size:350%;
+    }
+    .pl1 {
+        padding-left:100px;
+    }
+ }
+.thumb {
+    margin-bottom: 30px;
+    white-space: nowrap;
+}
+.thumbnail  {
+    height: 90px;
+}
+.img-responsive2 {
+    max-height: 80px;
+    vertical-align: middle;
+    max-width: 100%;
+    margin-left: -2.5px;
+}
+.helper {
+    display: inline-block;
+    height: 80px;
+    vertical-align: middle;
+}
+.frame2 {
+    height: 80px;      /* equals max image height */
+    white-space: nowrap;
+
+    text-align: center; margin: 0;
+}
+
+
+.container-fluid {
+    max-width: 1470px;
+}
+
+
+.subtitle {
+    color: white;
+    font-size:175%;
+}
