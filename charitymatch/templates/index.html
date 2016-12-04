@@ -27,7 +27,7 @@
           font-size: 3em;
         }
         .hero {
-            padding: 70px 60px 100px 60px;
+            padding: 70px 40px 100px 40px;
             text-align: center;
             color: white;
             height: 300px;
@@ -41,6 +41,10 @@
         .pl1 {
             padding-left:30px;
         }
+        .hero h1 {
+            color: white;
+            font-size:300%;
+        }
 
     @media (min-width: 768px) { 
             button > span {
@@ -50,8 +54,11 @@
                 text-align: center;
             }
             .hero {
-                padding: 70px 170px 100px 60px;
+                padding: 70px 130px 100px 60px;
                 text-align:right;
+            }
+            .hero h1 {
+                font-size:350%;
             }
             .pl1 {
                 padding-left:100px;
@@ -90,10 +97,7 @@
             max-width: 1470px;
         }
 
-        .hero h1 {
-            color: white;
-            font-size:300%;
-        }
+
         .subtitle {
             color: white;
             font-size:175%;
@@ -107,7 +111,7 @@
 {% block content %}
 <div class="hero">
 <h1>CharityMatch <span class="icon-heart"></span></h1>
-<p class="subtitle">Some text goes here <br>when I figure out what to write</p>
+<p class="subtitle">Find a nonprofit<br> you believe in</p>
 </div>
 
 <div class="container-fluid">
@@ -115,7 +119,7 @@
         <div class="col-md-8 col-xs-12">
             <div id="question-div">
                 <div class="well">
-                    <h2 class="text-center">Press the buttons to start filtering nonprofits!</h2>
+                    <h2 class="text-center">Press the buttons to start filtering nonprofits</h2>
                     <div>
                         <div class="row">
                             <div class="pl1">
