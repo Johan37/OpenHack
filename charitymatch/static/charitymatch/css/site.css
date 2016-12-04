@@ -1,3 +1,8 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
 .gridthumb {
     height:100px;
 }
@@ -27,10 +32,3 @@ p {
 .org_thumb {
     padding: 0 5px;
 }
-/*
-.center-block {
-    margin-left:auto;
-    margin-right:auto;
-    display:block;
-}
-*/
