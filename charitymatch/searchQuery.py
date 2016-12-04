@@ -27,45 +27,19 @@ def getSearchResults(request):
     # Retreive a list of all organisations
     organisationList = list(Organisation.objects.all())
 
-    matching_entries = []
-
+    # Filter on subjects selected
     matching_entries_category = filter_on_categories(search_param_dict, organisationList)
-
     matching_entries = matching_entries_category;
 
-    if 'area' in search_param_dict:
-        # Get the chosen area
-        picked_area = search_param_dict['area']
-        print("picked area: {}".format(picked_area))
-        
-        #for org in organisationList:
-            #print("org: {}".format(org))
-            #print("org.regions: {}".format(org.regions))
-            #print("org.regions.name: {}".format(org.regions.name))
-            #print("list(org.regions.values_list(\"name\", flat=True)): {}".format(list(org.regions.values_list("name", flat=True))))
-        
-        # Get a copy of a list with the organisations that match the area
-        matching_entires_area = [org for org in organisationList if picked_area in get_organisation_regions(org)]
-        print('matching_entires_area: {}'.format(matching_entires_area))
+    # Filter on area selected
+    matching_entries_area = filter_on_area(search_param_dict, organisationList)
+    matching_entries = [org for org in matching_entries if org in matching_entries_area]
 
-        #Adjust the list of matches as the intersection with this list
-        matching_entries = [org for org in matching_entries if org in matching_entires_area]
-        print('Matching entires: {}'.format(matching_entries))
+    # Filter on method selected
+    matching_entries_method = filter_on_method(search_param_dict, organisationList)
+    matching_entries = [org for org in matching_entries if org in matching_entries_method]
 
-    if 'how' in search_param_dict:
-        # Get the chosen method
-        picked_method = search_param_dict['how']
-        print("picked method: {}".format(picked_method))
-
-        # Get a copy of a list with the organisations that match the method
-        matching_entires_method = [org for org in organisationList if picked_method in get_organisation_methods(org)]
-
-        #Adjust the list of matches as the intersection with this list
-        matching_entries = [org for org in matching_entries if org in matching_entires_method]
-
-    print('Matching entires: {}'.format(matching_entries))
-
-    # Send response with data
+    # Send response with the ids filtered out
     filtered_ids = [obj.id for obj in matching_entries]
     return JsonResponse({"data": filtered_ids})
 
@@ -75,7 +49,7 @@ def filter_on_categories(search_param_dict, organisationList):
 
     #If no category is selected, don't filter at all but send all the organisations
     if not category_list:
-        return organisationList
+        return [org for org in organisationList]
     
     matching_entries_category = []
     for category in category_list:
@@ -87,6 +61,34 @@ def filter_on_categories(search_param_dict, organisationList):
 
     return matching_entries_category
 
+def filter_on_area(search_param_dict, organisationList):
+    if 'area' not in search_param_dict:
+        return [org for org in organisationList]
+
+    # Get the chosen area
+    picked_area = search_param_dict['area']
+    print("picked area: {}".format(picked_area))
+    
+    # Get a copy of a list with the organisations that match the area
+    matching_entires_area = [org for org in organisationList if picked_area in get_organisation_regions(org)]
+    print('matching_entires_area: {}'.format(matching_entires_area))
+
+    return matching_entires_area
+
+def filter_on_method(search_param_dict, organisationList):
+    if 'how' not in search_param_dict:
+        return [org for org in organisationList]
+
+    # Get the chosen method
+    picked_method = search_param_dict['how']
+    print("picked method: {}".format(picked_method))
+    
+    # Get a copy of a list with the organisations that match the method
+    matching_entires_method = [org for org in organisationList if picked_method in get_organisation_methods(org)]
+    print('matching_entires_method: {}'.format(matching_entires_method))
+
+    return matching_entires_method
+    
 def get_organisation_parent_categories(org):
 
     # Retrieve list with sub categories for organisation
