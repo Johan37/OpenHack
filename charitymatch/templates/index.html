@@ -26,14 +26,28 @@
         button > span {
           font-size: 3em;
         }
-@media (min-width: 768px) { 
-    button > span {
-          font-size: 5em;
-        }
-        text-center {
+        .hero {
+            padding: 70px 60px 100px 60px;
             text-align: center;
+            color: white;
+            height: 300px;
+            width: 100%;
+            background-image: url('/static/charitymatch/images/pexels-photo-201706.jpeg');
+            margin-bottom:20px;
         }
- }
+
+    @media (min-width: 768px) { 
+            button > span {
+                  font-size: 5em;
+            }
+            text-center {
+                text-align: center;
+            }
+            .hero {
+                padding: 70px 170px 100px 60px;
+                text-align:right;
+            }
+         }
         .thumb {
             margin-bottom: 30px;
             white-space: nowrap;
@@ -61,129 +75,146 @@
 
             text-align: center; margin: 0;
         }
+
+
+
+        .hero h1 {
+            color: white;
+            font-size:300%;
+        }
+        .subtitle {
+            color: white;
+            font-size:175%;
+        }
+
     </style>
 {% endblock %}
 
 {% block content %}
-
-<div class="row">
-    <div class="col-md-8 col-xs-12">
-        <div id="question-div">
-            <div class="well">
-                <h2>Form header</h2>
-                <div>
-                    <h3>Interest subject</h3>
-                    <div class="row">
-                        <div class="col-xs-4 mt1">
-                            <button type="button" class="btn btn-lg btn-default center-button answer" data-value="health" data-question="subject"><span class="icon-health"></span></button>
-                            <p class="button-text">Health</p>
-                            
-                        </div>
-                        <div class="col-xs-4 mt1">
-                            <button type="button" class="btn btn-lg btn-default center-button answer" data-value="environment" data-question="subject"><span class="icon-environment"></span></button>
-                            <p class="button-text">Environment</p>
-                        </div>
-                        <div class="col-xs-4 mt1">
-                            <button type="button" class="btn btn-lg btn-default center-button answer" data-value="children" data-question="subject"><span class="icon-children"></button>
-                            <p class="button-text">Children</p>
-                        </div>
-                        <div class="col-xs-4 mt1">
-                            <button type="button" class="btn btn-lg btn-default center-button answer" data-value="poverty" data-question="subject"><span class="icon-poverty"></button>
-                            <p class="button-text">Poverty</p>
-                        </div>
-                        <div class="col-xs-4 mt1">
-                            <button type="button" class="btn btn-lg btn-default center-button answer" data-value="knowledge" data-question="subject"><span class="icon-knowledge"></span></button>
-                            <p class="button-text">Knowledge</p>
-                        </div>
-                        <div class="col-xs-4 mt1">
-                            <button type="button" class="btn btn-lg btn-default center-button answer" data-value="human rights" data-question="subject"><span class="icon-accessibility"></span></button>
-                            <p class="button-text">Human rights</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="sub-category">
-                </div>
-                <div>
-                    <h3>Area</h3>
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <button type="button" class="btn btn-lg btn-default center-button answer" data-value="global" data-question="area"><span class="icon-global"></span></button>
-                            <p class="button-text">Global</p>
-                        </div>
-                        <div class="col-xs-6">
-                            <button type="button" class="btn btn-lg btn-default center-button answer" data-value="local" data-question="area"><span class="icon-local"></span></button>
-                            <p class="button-text">Local</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h3>How to help</h3>
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <button type="button" class="btn btn-lg btn-default center-button answer" data-value="money" data-question="how"><span class="icon-money"></span></button>
-                            <p class="button-text">Money</p>
-                        </div>
-                        <div class="col-xs-6">
-                            <button type="button" class="btn btn-lg btn-default center-button answer" data-value="volunteering" data-question="how"><span class="icon-volunteering"></button>
-                            <p class="button-text">Volunteering</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h3>Size</h3>
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <button type="button" class="btn btn-lg btn-default center-button answer" data-value="small" data-question="size"><span class="icon-small"></span></button>
-                            <p class="button-text">Small</p>
-                        </div>
-                        <div class="col-xs-4">
-                            <button type="button" class="btn btn-lg btn-default center-button answer" data-value="medium" data-question="size"><span class="icon-medium"></span></button>
-                            <p class="button-text">Medium</p>
-                        </div>
-                        <div class="col-xs-4">
-                            <button type="button" class="btn btn-lg btn-default center-button answer" data-value="big" data-question="size"><span class="icon-big"></span></button>
-                            <p class="button-text">Big</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4 col-xs-12">
-        <div class="well">
-            <div class="row">
-                <h2 class="text-center">Nonprofits</h2>
-                {% if orgs %}
-                <!--<ul class="list-unstyled">-->
-                {% for organisation in orgs %}
-                <div class="col-xs-4 col-sm-2 col-md-4 thumb org_thumb" id="org{{organisation.id}}" >
-
-                        <a href="/organisation/{{organisation.id}}" class="thumbnail">
-                            <div class="frame2">
-                                <span class="helper"></span>
-                                <img src="/static/charitymatch/organisations/image/{{organisation.get_name}}"
-                                     title="{{organisation.name}}" class="img-responsive2">
-                            </div>
-                        </a>
-
-                </div>
-                {% endfor %}
-                <!--</ul>-->
-
-                <span id="endpoint"></span>
-                {% else %}
-                <p>No organisations are available</p>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+<div class="hero">
+<h1>CharityMatch</h1>
+<p class="subtitle">Some text goes here <br>when I figure out what to write</p>
 </div>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-xs-12">
+            <div id="question-div">
+                <div class="well">
+                    <h2>Form header</h2>
+                    <div>
+                        <h3>Interest subject</h3>
+                        <div class="row">
+                            <div class="col-xs-4 mt1">
+                                <button type="button" class="btn btn-lg btn-default center-button answer" data-value="health" data-question="subject"><span class="icon-health"></span></button>
+                                <p class="button-text">Health</p>
+                                
+                            </div>
+                            <div class="col-xs-4 mt1">
+                                <button type="button" class="btn btn-lg btn-default center-button answer" data-value="environment" data-question="subject"><span class="icon-environment"></span></button>
+                                <p class="button-text">Environment</p>
+                            </div>
+                            <div class="col-xs-4 mt1">
+                                <button type="button" class="btn btn-lg btn-default center-button answer" data-value="children" data-question="subject"><span class="icon-children"></span></button>
+                                <p class="button-text">Children</p>
+                            </div>
+                            <div class="col-xs-4 mt1">
+                                <button type="button" class="btn btn-lg btn-default center-button answer" data-value="poverty" data-question="subject"><span class="icon-poverty"></span></button>
+                                <p class="button-text">Poverty</p>
+                            </div>
+                            <div class="col-xs-4 mt1">
+                                <button type="button" class="btn btn-lg btn-default center-button answer" data-value="knowledge" data-question="subject"><span class="icon-knowledge"></span></button>
+                                <p class="button-text">Knowledge</p>
+                            </div>
+                            <div class="col-xs-4 mt1">
+                                <button type="button" class="btn btn-lg btn-default center-button answer" data-value="human rights" data-question="subject"><span class="icon-accessibility"></span></button>
+                                <p class="button-text">Human rights</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sub-category">
+                    </div>
+                    <div>
+                        <h3>Area</h3>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <button type="button" class="btn btn-lg btn-default center-button answer" data-value="global" data-question="area"><span class="icon-global"></span></button>
+                                <p class="button-text">Global</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <button type="button" class="btn btn-lg btn-default center-button answer" data-value="sweden" data-question="area"><span class="icon-local"></span></button>
+                                <p class="button-text">Local</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>How to help</h3>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <button type="button" class="btn btn-lg btn-default center-button answer" data-value="donate" data-question="how"><span class="icon-money"></span></button>
+                                <p class="button-text">Money</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <button type="button" class="btn btn-lg btn-default center-button answer" data-value="volunteer" data-question="how"><span class="icon-volunteering"></span></button>
+                                <p class="button-text">Volunteering</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Size</h3>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <button type="button" class="btn btn-lg btn-default center-button answer" data-value="small" data-question="size"><span class="icon-small"></span></button>
+                                <p class="button-text">Small</p>
+                            </div>
+                            <div class="col-xs-4">
+                                <button type="button" class="btn btn-lg btn-default center-button answer" data-value="medium" data-question="size"><span class="icon-medium"></span></button>
+                                <p class="button-text">Medium</p>
+                            </div>
+                            <div class="col-xs-4">
+                                <button type="button" class="btn btn-lg btn-default center-button answer" data-value="big" data-question="size"><span class="icon-big"></span></button>
+                                <p class="button-text">Big</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+            <div class="well">
+                <div class="row">
+                    <h2 class="text-center">Nonprofits</h2>
+                    {% if orgs %}
+                    <!--<ul class="list-unstyled">-->
+                    {% for organisation in orgs %}
+                    <div class="col-xs-4 col-sm-2 col-md-4 thumb org_thumb" id="org{{organisation.id}}" >
+
+                            <a href="/organisation/{{organisation.id}}" class="thumbnail">
+                                <div class="frame2">
+                                    <span class="helper"></span>
+                                    <img src="/static/charitymatch/organisations/image/{{organisation.get_name}}"
+                                         title="{{organisation.name}}" class="img-responsive2">
+                                </div>
+                            </a>
+
+                    </div>
+                    {% endfor %}
+                    <!--</ul>-->
+
+                    <span id="endpoint"></span>
+                    {% else %}
+                    <p>No organisations are available</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-{% endblock %}
 
+    {% endblock %}
+</div>
 {% block js %}
 <script>
 $( document ).ready(function() {
@@ -228,17 +259,17 @@ $( document ).ready(function() {
 
         if (question != 'subject') {
             //Change active states accordingly
-            $('[data-question="' + question +'"]').removeClass('active btn-primary');
+            $('[data-question="' + question +'"]').removeClass('active btn-warning');
             //Delete value if it was previously there, otherwise set it.
             if (answers[question] == value) {
                 delete answers[question]
             } else {
                 answers[question] = value;
-                $(this).addClass('active btn-primary');
+                $(this).addClass('active btn-warning');
             }
         } else {
             //subject behaves as a list and items can be added or removed.
-            $(this).toggleClass('active btn-primary');
+            $(this).toggleClass('active btn-warning');
             var index = answers[question].indexOf(value);
             if (index < 0) {
                 answers[question].push(value);
