@@ -92,6 +92,11 @@
             font-size:175%;
         }
 
+        .shorter {
+            width: 68%;
+            margin: 0 auto;
+        }
+
     </style>
 {% endblock %}
 
@@ -106,9 +111,9 @@
         <div class="col-md-8 col-xs-12">
             <div id="question-div">
                 <div class="well">
-                    <h2>Form header</h2>
+                    <h2 class="text-center">Press the buttons to start filtering nonprofits!</h2>
                     <div>
-                        <h3>Interest subject</h3>
+                        <h3 class="text-center">Interest subject</h3>
                         <div class="row">
                             <div class="col-xs-4 mt1">
                                 <button type="button" class="btn btn-lg btn-default center-button answer" data-value="health" data-question="subject"><span class="icon-health"></span></button>
@@ -140,8 +145,8 @@
                     <div id="sub-category">
                     </div>
                     <div>
-                        <h3>Area</h3>
-                        <div class="row">
+                        <h3 class="text-center">Area</h3>
+                        <div class="row shorter">
                             <div class="col-xs-6">
                                 <button type="button" class="btn btn-lg btn-default center-button answer" data-value="global" data-question="area"><span class="icon-global"></span></button>
                                 <p class="button-text">Global</p>
@@ -153,8 +158,8 @@
                         </div>
                     </div>
                     <div>
-                        <h3>How to help</h3>
-                        <div class="row">
+                        <h3 class="text-center">How to help</h3>
+                        <div class="row shorter">
                             <div class="col-xs-6">
                                 <button type="button" class="btn btn-lg btn-default center-button answer" data-value="donate" data-question="how"><span class="icon-money"></span></button>
                                 <p class="button-text">Money</p>
@@ -166,7 +171,7 @@
                         </div>
                     </div>
                     <div>
-                        <h3>Size</h3>
+                        <h3 class="text-center">Size</h3>
                         <div class="row">
                             <div class="col-xs-4">
                                 <button type="button" class="btn btn-lg btn-default center-button answer" data-value="small" data-question="size"><span class="icon-small"></span></button>
