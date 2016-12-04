@@ -3,6 +3,7 @@
 .idea/
 settings.py
 data/
+*#
 
 ## Preset
 
