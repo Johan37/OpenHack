@@ -11,7 +11,7 @@ def getSearchResults(request):
     #translate the JSON body to Python
     searchParameters = []
     if request.is_ajax():
-        if request.method == 'POST':
+        if request.method == 'GET':
             body_unicode = request.body.decode('utf-8')
             print('Raw Data: "%s"' % body_unicode)
             searchParameters = json.loads(body_unicode)
