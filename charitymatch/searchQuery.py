@@ -27,17 +27,11 @@ def getSearchResults(request):
     # Retreive a list of all organisations
     organisationList = list(Organisation.objects.all())
 
-    # Retreive the subjects from parameters
-    picked_subjects = search_param_dict['subject']
-
     matching_entries = []
 
-    for subject in picked_subjects:
-        # Get a copy of a list of the organisations that match the current subject
-        current_matching_entires = [org for org in organisationList if subject in get_organisation_parent_categories(org)]
+    matching_entries_category = filter_on_categories(search_param_dict, organisationList)
 
-        # Union it with the other filters' matches
-        matching_entries = list(set(current_matching_entires).union(set(matching_entries)))
+    matching_entries = matching_entries_category;
 
     if 'area' in search_param_dict:
         # Get the chosen area
@@ -75,6 +69,23 @@ def getSearchResults(request):
     filtered_ids = [obj.id for obj in matching_entries]
     return JsonResponse({"data": filtered_ids})
 
+def filter_on_categories(search_param_dict, organisationList):
+    # Retreive the subjects from parameters
+    category_list = search_param_dict['subject']
+
+    #If no category is selected, don't filter at all but send all the organisations
+    if not category_list:
+        return organisationList
+    
+    matching_entries_category = []
+    for category in category_list:
+        # Get a copy of a list of the organisations that match the current category
+        current_matching_entires = [org for org in organisationList if category in get_organisation_parent_categories(org)]
+
+        # Union it with the other filters' matches
+        matching_entries_category = list(set(current_matching_entires).union(set(matching_entries_category)))
+
+    return matching_entries_category
 
 def get_organisation_parent_categories(org):
 
